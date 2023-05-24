@@ -1,1 +1,81 @@
-{"abi":[{"inputs":[],"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"enum DoorV2.Status","name":"status","type":"uint8"}],"name":"DoorTriggered","type":"event"},{"inputs":[],"name":"closeDoor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getDoorStatus","outputs":[{"internalType":"enum DoorV2.Status","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"openDoor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"status","outputs":[{"internalType":"enum DoorV2.Status","name":"","type":"uint8"}],"stateMutability":"view","type":"function"}]}
+{
+    "abi": [
+        {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "enum DoorV3.Status",
+                    "name": "status",
+                    "type": "uint8"
+                }
+            ],
+            "name": "DoorTriggered",
+            "type": "event"
+        },
+        {
+            "inputs": [],
+            "name": "getAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getDoorStatus",
+            "outputs": [
+                {
+                    "internalType": "enum DoorV3.Status",
+                    "name": "",
+                    "type": "uint8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "status",
+            "outputs": [
+                {
+                    "internalType": "enum DoorV3.Status",
+                    "name": "",
+                    "type": "uint8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "toggleDoor",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ]
+}

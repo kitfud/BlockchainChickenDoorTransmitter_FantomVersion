@@ -2,7 +2,6 @@ import React, { useState, useEffect,useContext,createContext } from 'react';
 import {  Button, CircularProgress, Box,  Typography, Card, CardContent} from "@mui/material"
 import { ethers } from 'ethers'
 import { ContractContext } from '../../App';
-import {connect} from "simple-web-serial";
 
 export const WalletContext = createContext();
 
@@ -16,42 +15,24 @@ const WalletConnect = ({
     setContract,
     provider,
     setProvider,
-    signer
 }) => {
 
     const contractinfo = useContext(ContractContext);
+    const abi = contractinfo.abi
+    const address = contractinfo.address
 
     const [connButtonText, setConnButtonText] = useState('Connect Wallet');
     const [accountchanging, setAccountChanging] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null);
     const [connectButtonColor, setConnectButtonColor] = useState("primary")
-    const [controlButtonColor,setControlButtonColor]= useState("primary")
     const [processing, setProcessing] = useState(false)
-    const [buttontext, setButtonText] = useState("Connect to Door Controller")
-    const [connection, setConnection] = useState(null);
-
-   
-
     const [doorStatus,setDoorStatus] = useState(null)
-
-  
-
     const [data, setTxData] = useState(null)
 
-    const abi = contractinfo.abi
-    const address = contractinfo.address
-
-    const handleConnect = async ()=>{
-        setConnection(connect(57600))
-        setControlButtonColor("success")
-        setButtonText("Connected to Controller")
-    }
-
-
+ 
     useEffect(()=>{
     setContract(new ethers.Contract(address,abi,provider))
     },[])
-
 
 
     const connectWalletHandler = () => {
@@ -120,27 +101,19 @@ const WalletConnect = ({
 
     }
 
-    const checkBalance = ()=>{
-        setWalletBalance(defaultAccount.balance)
-    }
-    
-    const getContractBalance = async()=>{
-        if(contract & provider){
-        getDoorStatus()
-        }
-    }
 
     const getDoorStatus = async()=>{
+        console.log("Door Status being checked...")
         let status = await contract.getDoorStatus()
         setDoorStatus(status)
     }
 
-    const openDoor = async ()=>{
+    const toggleDoor = async ()=>{
         setErrorMessage(null)
         try{
         setProcessing(true)
-        console.log("openingDoor")
-        await contract.openDoor()
+        console.log("toggleDoor")
+        await contract.toggleDoor()
   
         }
         catch(error){
@@ -150,30 +123,10 @@ const WalletConnect = ({
     }
 
 
-    const closeDoor = async ()=>{
-        setErrorMessage(null)
-        try{
-        setProcessing(true)
-        console.log("closingDoor")
-        await contract.closeDoor()
-
-        }
-        catch(error) {
-            setProcessing(false)
-            console.log(error.message)
-        }
-    }
-
-    const test = ()=>{
-        console.log(connection)
-    }
-
-
-
     useEffect(() => {
 
         getWalletBalance(provider)
-        getContractBalance()
+      
         if(contract){
         getDoorStatus()
         }
@@ -198,28 +151,14 @@ const WalletConnect = ({
 
     useEffect(()=>{
         console.log("DATA Recieved")
-    if(contract){
-      getContractBalance()
+    if(provider && contract){
       getDoorStatus()
-      checkBalance() 
+      //checkBalance() 
     } 
    
         
     },[data])
 
-    useEffect(()=>{
-if(connection){
-console.log("door Satus Change")
-    if(doorStatus ==1){
-        console.log("sending Door Close")
-        connection.send("door",2)
-    }
-    else{
-        console.log("sending Door Open")
-        connection.send("door",1)
-    }
-}
-    },[doorStatus])
 
 
     useEffect(()=>{
@@ -229,16 +168,21 @@ console.log("door Satus Change")
         status: status.toString(),
         event:event
       }
-      console.log(data)
-      setTxData(data)
+      console.log(data.status)
+      setTxData(data.status)
       setProcessing(false)
     //   contract.removeListener("DoorTriggered",(status,event))
+
+ 
       })
-      
-      
+      //to have a dynamic check on the contract for door status change
+      setInterval(getDoorStatus,1000);
       }},[contract])
 
-  
+  useEffect(()=>{
+    console.log("Door Status has been set to ",doorStatus)
+    setProcessing(false)
+  },[doorStatus])
 
   return (
       <>
@@ -285,24 +229,14 @@ console.log("door Satus Change")
             </Box>
             </Card>
 
-            
-            <Box>
-          {
-            !connection?  <Button sx={{marginTop:'20px'}} variant="contained" color={controlButtonColor} onClick={handleConnect}>
-            {buttontext}
-            </Button>:null
-          }
          
-
-             </Box>  
              {
                 
-                connection?(
+                contract && defaultAccount?(
                     !processing?
                     <>
                     <Box sx={{marginTop:'20px'}}>
-                    <Button onClick={openDoor} variant="contained" sx={{backgroundColor:"purple"}}>Open Door</Button>
-                    <Button onClick={closeDoor} variant="contained" color="warning">Close Door</Button>
+                    <Button onClick={toggleDoor} variant="contained" sx={{backgroundColor:"purple"}}>Toggle Door</Button>
                     </Box>
                     
                     </>:<Box sx={{marginTop:'20px'}}>

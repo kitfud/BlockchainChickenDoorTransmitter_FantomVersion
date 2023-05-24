@@ -11,8 +11,11 @@ import { useState, createContext } from "react";
 
 export const ContractContext = createContext();
 
-const {REACT_APP_CONTRACTADDRESS: contractDeploymentAddress} = process.env
+//testnet contract below
+//const contractDeploymentAddress = '0x17AE6Db98d462f0F76F68bcd4cC025cc3C4a4F32'
 
+//mainnet contract 
+const contractDeploymentAddress= '0xD14EcfE4e1E5B7e9Bd1368Bbb3820061cE222133'
 
 let theme = createTheme({
   palette: {
