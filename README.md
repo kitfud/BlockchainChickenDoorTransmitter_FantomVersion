@@ -2,7 +2,7 @@
 
 ![diagram](https://raw.githubusercontent.com/kitfud/BlockchainChickenDoorTransmitter_FantomVersion/master/Blockchain_Door_Screenshots/App_Diagram.png)
 
-<a href="https://www.youtube.com/watch?v=GRRlAFD2J1c"><h3 align="center" >Click For YouTube Video Walkthrough </h3></a>
+<a align="center" href="https://www.youtube.com/watch?v=GRRlAFD2J1c">Click For YouTube Video Walkthrough</a>
 
 <h1 align="center">This is the Repo for the Transmitter App</h1>
 
