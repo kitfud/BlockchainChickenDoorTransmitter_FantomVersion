@@ -7,7 +7,7 @@
 <h1 align="center">This is the Repo for the Transmitter App</h1>
 
 <p>
-The purpose of the trasmitter app is to act as an interface for toggling a state change on the <a href="https://ftmscan.com/address/0xD14EcfE4e1E5B7e9Bd1368Bbb3820061cE222133#code">DoorV3.sol</a> contract. Becase of the way the smart contract is built- only the contract owner can call functions on it- this ensures that I am the only one who can operate the coop door however, the code could easily be amended to include more permissions. When this application is paried with the <a href="https://github.com/kitfud/BlockchainChickenDoorReceiver_FantomVersion">Blockchain Door Receiver App</a> it will cause the remote chicken door (picture below) to open or close: 
+The purpose of the trasmitter app is to act as an interface for toggling a state change on the <a href="https://ftmscan.com/address/0xD14EcfE4e1E5B7e9Bd1368Bbb3820061cE222133#code">DoorV3.sol</a> contract. Becase of the way the smart contract is built- only the contract owner can call functions on it- and this ensures that I am the only one who can operate the coop door however, the code could easily be amended to include more permissions. When this application is paried with the <a href="https://github.com/kitfud/BlockchainChickenDoorReceiver_FantomVersion">Blockchain Door Receiver App</a> it will cause the remote chicken door (picture below) to open or close: 
 <p>
   
  <p align="center">
@@ -24,7 +24,7 @@ The purpose of the trasmitter app is to act as an interface for toggling a state
 </p>
 
 <h2>2. Click the "Toggle Door" Button</h2>
-<p>The toggle door button will be visible once a user connects their wallet. The button's functionality will only be available to the contract deployer (me)- so that I am the only one who can operate teh chicken coop door on via the web app.</p>
+<p>The toggle door button will be visible once a user connects their wallet. The button's functionality will only be available to the contract deployer (me)- so that I am the only one who can operate the chicken coop door via the web app.</p>
  <p align="center">
   <img src="https://raw.githubusercontent.com/kitfud/BlockchainChickenDoorTransmitter_FantomVersion/master/Blockchain_Door_Screenshots/TransmitterApp/setup2.png" alt="setup2"/>
 </p>
@@ -36,7 +36,7 @@ The purpose of the trasmitter app is to act as an interface for toggling a state
 </p>
 
 <h2>4.When The Spinner Stops The Door Status Will Change</h2>
-When the spinner stops then the state of the door has successfully changed between open/close. This recorded state change on the blockchain will eventually be picked up by the Blockchain Receiver app which in turn will handle the triggering of the coop door (hardware). 
+When the spinner stops then the state of the door has successfully changed between open/close. This recorded state change on the blockchain will eventually be picked up by the Blockchain Receiver app which in turn will handle the triggering of the coop door (hardware signaling). 
  <p align="center">
   <img src="https://raw.githubusercontent.com/kitfud/BlockchainChickenDoorTransmitter_FantomVersion/master/Blockchain_Door_Screenshots/TransmitterApp/setup4.png" alt="setup4"/>
 </p>
